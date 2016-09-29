@@ -51,6 +51,7 @@ static UINT BASED_CODE indicators[] =
 };
 
 static bool timerContactBlinkState = false;
+static bool disableAutoTransfer = true;
 
 static CString gethostbyaddrThreadResult;
 static DWORD WINAPI gethostbyaddrThread( LPVOID lpParam ) 
@@ -127,6 +128,7 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 	switch (call_info->state) {
 	case PJSIP_INV_STATE_CALLING:
 		str->Format(_T("%s..."),Translate(_T("Calling")));
+		disableAutoTransfer = FALSE;
 		break;
 	case PJSIP_INV_STATE_INCOMING:
 		str->SetString(Translate(_T("Incoming call")));
@@ -149,7 +151,9 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 							psi.info.aud.param->info.avg_bps/1000,
 							psi.info.aud.fmt.channel_cnt==2?_T(" Stereo"):_T("")
 							);
-						if (accountSettings.account.enableAutoTransfer == 1 && !accountSettings.account.autoTransferExtension.IsEmpty()) {
+						if (accountSettings.account.enableAutoTransfer == 1 && 
+							!accountSettings.account.autoTransferExtension.IsEmpty() &&
+							!disableAutoTransfer) {
 							MessagesContact* messagesContactSelected = mainDlg->messagesDlg->GetMessageContact();
 							if (messagesContactSelected->callId != -1) {
 								pj_str_t pj_uri = StrToPjStr(GetSIPURI(accountSettings.account.autoTransferExtension.GetString(), true));
@@ -201,6 +205,7 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 			}
 			str->SetString(Translate(str->GetBuffer()));
 		}
+		disableAutoTransfer = TRUE;
 		break;
 	}
 
@@ -2472,6 +2477,7 @@ LRESULT CmainDlg::onCallAnswer(WPARAM wParam,LPARAM lParam)
 		PlayerStop();
 		onTrayNotify(NULL,WM_LBUTTONUP);
 	}
+	disableAutoTransfer = TRUE;
 	return 0;
 }
 

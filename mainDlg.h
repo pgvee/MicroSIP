@@ -68,7 +68,7 @@ public:
 	bool m_startMinimized;
 
 	SettingsDlg* settingsDlg;
-MessagesDlg* messagesDlg;
+	MessagesDlg* messagesDlg;
 	Transfer* transferDlg;
 
 	Dialer* pageDialer;
