@@ -47,7 +47,7 @@ BOOL CXMLFile::LoadFromFile(LPTSTR lpszXMLFilePath)
 	if (xmlFile != NULL)
 	{
 		// Get file length
-		m_dwDataSize = _filelength(xmlFile->_file);
+		m_dwDataSize = _filelength(_fileno(xmlFile));
 
 		// Read file data
 		m_lpData = (BYTE*)malloc(m_dwDataSize*sizeof(BYTE));
