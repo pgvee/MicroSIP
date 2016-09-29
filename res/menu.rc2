@@ -1,0 +1,64 @@
+//
+// resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_CONTACT MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Call",                        ID_CALL
+#ifdef _GLOBAL_VIDEO
+        MENUITEM "Video call",                  ID_VIDEOCALL
+#endif
+        MENUITEM "Message",                     ID_CHAT
+        MENUITEM SEPARATOR
+        MENUITEM "Add",                         ID_ADD
+        MENUITEM "Edit",                        ID_EDIT
+        MENUITEM "Copy",                        ID_COPY
+        MENUITEM "Delete",                      ID_DELETE
+    END
+END
+
+IDR_MENU_TRAY MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+		MENUITEM SEPARATOR
+		MENUITEM "Settings\tCtrl+P",                    ID_SETTINGS
+        MENUITEM SEPARATOR
+		MENUITEM "Always on Top",               ID_ALWAYS_ON_TOP
+        MENUITEM "View log file",               ID_LOG
+		MENUITEM SEPARATOR
+		MENUITEM "Visit website\tCtrl+W",      ID_WEBSITE
+		MENUITEM "Donate",      ID_DONATE
+		MENUITEM SEPARATOR
+		MENUITEM "Exit\tCtrl+X",                        ID_EXIT
+    END
+END
+
+IDR_MENU_TABS MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Last Call",                   ID_GOTOLASTTAB
+        MENUITEM "Close All",                   ID_CLOSEALLTABS
+    END
+END
+
+IDR_MENU_MESSAGES MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Copy",                        ID_COPY
+        MENUITEM "Select All",                  ID_SELECT_ALL
+    END
+END
