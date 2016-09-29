@@ -217,7 +217,11 @@ int i;
 	}
 
 	((CButton*)GetDlgItem(IDC_PUBLISH))->SetCheck(m_Account.publish);
-
+	
+	edit = (CEdit*)GetDlgItem(IDC_EDIT_TRANSFEREXT);
+	edit->SetWindowText(m_Account.autoTransferExtension);
+	((CButton*)GetDlgItem(IDC_AUTO_TRANSFER_ENABLE))->SetCheck(m_Account.enableAutoTransfer);
+	
 	((CButton*)GetDlgItem(IDC_ICE))->SetCheck(m_Account.ice);
 	((CButton*)GetDlgItem(IDC_REWRITE))->SetCheck(m_Account.allowRewrite);
 	if (accountId>0 && !m_Account.username.IsEmpty()) {
@@ -296,6 +300,12 @@ void AccountDlg::OnBnClickedOk()
 	}
 
 	m_Account.publish = ((CButton*)GetDlgItem(IDC_PUBLISH))->GetCheck();
+
+	edit = (CEdit*)GetDlgItem(IDC_EDIT_TRANSFEREXT);
+	edit->GetWindowText(str);
+	m_Account.autoTransferExtension = str.Trim();
+
+	m_Account.enableAutoTransfer = ((CButton*)GetDlgItem(IDC_AUTO_TRANSFER_ENABLE))->GetCheck();
 
 	m_Account.ice = ((CButton*)GetDlgItem(IDC_ICE))->GetCheck();
 

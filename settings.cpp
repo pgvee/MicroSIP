@@ -448,6 +448,14 @@ bool AccountSettings::AccountLoad(int id, Account *account)
 	str.ReleaseBuffer();
 	account->publish=str==_T("1")?1:0;
 
+	ptr = str.GetBuffer(255);
+	GetPrivateProfileString(section, _T("enableAutoTransfer"), NULL, ptr, 256, iniFile);
+	str.ReleaseBuffer();
+	account->enableAutoTransfer = str == _T("1") ? 1 : 0;
+
+	ptr = account->autoTransferExtension.GetBuffer(255);
+	GetPrivateProfileString(section, _T("autoTransferExtension"), NULL, ptr, 256, iniFile);
+	account->autoTransferExtension.ReleaseBuffer();
 
 	ptr = account->stun.GetBuffer(255);
 	GetPrivateProfileString(section,_T("STUN"), NULL, ptr, 256, iniFile);
@@ -539,6 +547,8 @@ void AccountSettings::AccountSave(int id, Account *account)
 	WritePrivateProfileString(section,_T("publicAddr"),account->publicAddr,iniFile);
 	WritePrivateProfileString(section,_T("SRTP"),account->srtp,iniFile);
 	WritePrivateProfileString(section,_T("publish"),account->publish?_T("1"):_T("0"),iniFile);
+	WritePrivateProfileString(section,_T("enableAutoTransfer"),account->enableAutoTransfer?_T("1"): _T("0"), iniFile);
+	WritePrivateProfileString(section,_T("autoTransferExtension"),account->autoTransferExtension,iniFile);
 	WritePrivateProfileString(section,_T("ICE"),account->ice?_T("1"):_T("0"),iniFile);
 	WritePrivateProfileString(section,_T("allowRewrite"),account->allowRewrite?_T("1"):_T("0"),iniFile);
 }

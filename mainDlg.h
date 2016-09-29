@@ -26,15 +26,15 @@
 
 #ifdef NDEBUG
 #ifdef _GLOBAL_VIDEO
-#pragma comment(lib, "libpjproject-i386-Win32-vc8-Release-Static-Video.lib")
+#pragma comment(lib, "libpjproject-i386-Win32-vc14-Release-Static.lib")
 #else
-#pragma comment(lib, "libpjproject-i386-Win32-vc8-Release-Static-NoVideo.lib")
+#pragma comment(lib, "libpjproject-i386-Win32-vc14-Release-Static.lib")
 #endif
 #else
 #ifdef _GLOBAL_VIDEO
-#pragma comment(lib, "libpjproject-i386-Win32-vc8-Debug-Static-Video.lib")
+#pragma comment(lib, "libpjproject-i386-Win32-vc14-Debug-Static.lib")
 #else
-#pragma comment(lib, "libpjproject-i386-Win32-vc8-Debug-Static-NoVideo.lib")
+#pragma comment(lib, "libpjproject-i386-Win32-vc14-Debug-Static.lib")
 #endif
 #endif
 

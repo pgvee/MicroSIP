@@ -34,6 +34,8 @@ struct Account {
 	CString transport;
 	CString publicAddr;
 	int publish;
+	CString autoTransferExtension;
+	int enableAutoTransfer;
 	CString stun;
 	int ice;
 	int allowRewrite;

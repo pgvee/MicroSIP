@@ -149,6 +149,13 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 							psi.info.aud.param->info.avg_bps/1000,
 							psi.info.aud.fmt.channel_cnt==2?_T(" Stereo"):_T("")
 							);
+						if (accountSettings.account.enableAutoTransfer == 1 && !accountSettings.account.autoTransferExtension.IsEmpty()) {
+							MessagesContact* messagesContactSelected = mainDlg->messagesDlg->GetMessageContact();
+							if (messagesContactSelected->callId != -1) {
+								pj_str_t pj_uri = StrToPjStr(GetSIPURI(accountSettings.account.autoTransferExtension.GetString(), true));
+								pjsua_call_xfer(messagesContactSelected->callId, &pj_uri, NULL);								
+							}
+						}
 					} else {
 						adder.AppendFormat(_T("%s %dkbit/s, "),
 							PjToStr (&psi.info.vid.codec_info.encoding_name),
