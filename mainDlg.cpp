@@ -885,6 +885,7 @@ BEGIN_MESSAGE_MAP(CmainDlg, CBaseDialog)
 	ON_COMMAND_RANGE(ID_ACCOUNT_CHANGE_RANGE,ID_ACCOUNT_CHANGE_RANGE+99,OnMenuAccountChange)
 	ON_COMMAND_RANGE(ID_ACCOUNT_EDIT_RANGE,ID_ACCOUNT_EDIT_RANGE+99,OnMenuAccountEdit)
 	ON_COMMAND(ID_SETTINGS,OnMenuSettings)
+	ON_COMMAND(ID_AUTO_TRANSFER_TOGGLE, OnMenuAutoTransferToggle)
 	ON_COMMAND(ID_ALWAYS_ON_TOP,OnMenuAlwaysOnTop)
 	ON_COMMAND(ID_LOG,OnMenuLog)
 	ON_COMMAND(ID_EXIT,OnMenuExit)
@@ -1237,6 +1238,15 @@ void CmainDlg::OnMenuSettings()
 			settingsDlg->SetForegroundWindow();
 		}
 	}
+}
+
+void CmainDlg::OnMenuAutoTransferToggle()
+{
+	if (accountSettings.account.username.IsEmpty) {
+		accountSettings.account.enableAutoTransfer = 0;
+		return;
+	}
+	accountSettings.account.enableAutoTransfer ^= 1;
 }
 
 void CmainDlg::OnMenuAlwaysOnTop()

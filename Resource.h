@@ -233,6 +233,7 @@
 #define ID_ACCOUNT_CHANGE_RANGE         40000
 #define ID_ACCOUNT_EDIT_RANGE           40100
 #define ID_ATTENDED_TRANSFER_RANGE      40200
+#define ID_AUTO_TRANSFER_TOGGLE		    40300
 
 // Next default values for new objects
 // 

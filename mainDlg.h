@@ -192,6 +192,7 @@ public:
 	afx_msg void OnMenuAccountChange(UINT nID);
 	afx_msg void OnMenuAccountEdit(UINT nID);
 	afx_msg void OnMenuSettings();
+	afx_msg void OnMenuAutoTransferToggle();
 	afx_msg void OnMenuAlwaysOnTop();
 	afx_msg void OnMenuLog();
 	afx_msg void OnMenuExit();

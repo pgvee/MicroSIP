@@ -39,6 +39,10 @@ BOOL CBaseDialog::PreTranslateMessage(MSG* pMsg)
 	BOOL catched = FALSE;
 	if (pMsg->message == WM_KEYDOWN) {
 		if (GetAsyncKeyState(VK_CONTROL)<0) {
+			if (pMsg->wParam == 'A') {
+				PostMessage(WM_COMMAND, ID_AUTO_TRANSFER_TOGGLE, 0);
+				catched = TRUE;
+			}
 			if (pMsg->wParam == 'M') {
 				PostMessage(WM_COMMAND,ID_ACCOUNT_EDIT_RANGE,0);
 				catched = TRUE;
