@@ -1242,7 +1242,7 @@ void CmainDlg::OnMenuSettings()
 
 void CmainDlg::OnMenuAutoTransferToggle()
 {
-	if (accountSettings.account.username.IsEmpty) {
+	if (accountSettings.account.username.IsEmpty()) {
 		accountSettings.account.enableAutoTransfer = 0;
 		return;
 	}
